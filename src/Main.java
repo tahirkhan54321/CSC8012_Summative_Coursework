@@ -11,22 +11,22 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<Activity> activities = new ArrayList<>();
+        SortedArrayList<Activity> activities = new SortedArrayList<>();
         HashMap<String, Integer> eachCustomerActivities = new HashMap<>();
-        ArrayList<Customer> customers = new ArrayList<>();
+        SortedArrayList<Customer> customers = new SortedArrayList<>();
 
         try (
                 Scanner fileReader = new Scanner(Paths.get("input.txt"))) {
 
             int numberOfActivities = Integer.parseInt(fileReader.nextLine()); //taking the first line to use in a for loop
             /*
-            for loop to add activities to the arraylist and the customer's hashmap
+            for loop to add activities to the arraylist and builds a hashmap of activities which can be used in the customer object
              */
             for (int i = 0; i < numberOfActivities; i++) {
                 String activityName = fileReader.nextLine();
                 int activityTickets = Integer.parseInt(fileReader.nextLine());
                 Activity activityElement = new Activity(activityName, activityTickets);
-                activities.add(activityElement);
+                activities.sortedArrayList();
                 eachCustomerActivities.put(activityName,0);
             }
 

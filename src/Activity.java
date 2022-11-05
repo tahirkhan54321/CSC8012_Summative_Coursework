@@ -1,4 +1,4 @@
-public class Activity {
+public class Activity implements Comparable<Activity> {
 
     private String activityName;
     private int maxNumberOfTickets;
@@ -22,6 +22,16 @@ public class Activity {
 
     public void setMaxNumberOfTickets(int maxNumberOfTickets) {
         this.maxNumberOfTickets = maxNumberOfTickets;
+    }
+
+    //TODO: check this logic is the right way around
+    @Override
+    public int compareTo(Activity activity) {
+        int activityComparison = this.activityName.compareTo(activity.getActivityName());
+        if (activityComparison !=0) {
+            return activityComparison;
+        }
+        return 0;
     }
 
     //TODO: Make this an appropriate format for output
