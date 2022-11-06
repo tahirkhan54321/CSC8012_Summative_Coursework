@@ -1,33 +1,43 @@
 import java.util.ArrayList;
 
-public class SortedArrayList<E extends Comparable<E>> {
+public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
 
-    ArrayList<E> arrayList;
+    private ArrayList<E> aL; //the structure of this object only has an arraylist of generic objects
 
-    public SortedArrayList(ArrayList<E> arrayList) {
-        this.arrayList = arrayList;
+    public SortedArrayList(ArrayList<E> aL) {
+        super();
+        this.aL = aL; //the sortedarraylist object takes in an arraylist
     }
 
-
-    public ArrayList sortedArrayList(ArrayList<E> arrayList, E addToList) {
-        ArrayList<E> newSortedArrayList = new ArrayList<>();
-        if (arrayList.size() == 0) {
-            newSortedArrayList.add(addToList);
-        } else {
-            for (int i = 0; i < arrayList.size(); i++) {
-                if (arrayList.get(i).compareTo(addToList) < 0) { //TODO: is this the right way around?
-                    newSortedArrayList.add(arrayList.get(i));
+    public void addElement(E addToList) {
+        //SortedArrayList<E> newSortedArrayList = new SortedArrayList<E>(new ArrayList<E>());
+        /* if (this.aL.size() == 0) {
+            //newSortedArrayList.add(addToList);
+            this.aL.add(addToList);
+        } else { */
+        System.out.println("size is: " + this.aL.size()); // this would suggest that I'm running the below on the wrong thing (i.e. not this.aL)
+            for (int i = 0; i < this.aL.size(); i++) {
+                if (this.aL.get(i).compareTo(addToList) < 0) { //TODO: is this the right way around?
+                    //newSortedArrayList.add(this.aL.get(i));
+                    //this.aL.add(this.aL.get(i));
+                    System.out.println("<");
+                    this.aL.add(i, addToList);
+                    break;
                 }
-                if (arrayList.get(i).compareTo(addToList) == 0) {
+                //if (this.aL.get(i).compareTo(addToList) == 0) {
                     //TODO: this either does nothing or maybe prints letter?
-                }
-                if (arrayList.get(i).compareTo(addToList) > 0) { //TODO: is this the right way around?
-                    newSortedArrayList.add(addToList);
+                //}
+                else if (this.aL.get(i).compareTo(addToList) > 0) { //TODO: is this the right way around?
+                    //newSortedArrayList.add(addToList);
+                    //this.aL.add(addToList);
+                    System.out.println(">");
+                    this.aL.add(i, addToList);
+                    break;
                 }
             }
-        }
+        //}
 // list.add could work as an alternative, would this be more memory efficient?
-        return newSortedArrayList;
+        //return newSortedArrayList;
     }
 
 }

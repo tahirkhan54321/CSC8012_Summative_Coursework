@@ -11,14 +11,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        SortedArrayList<Activity> activities = new SortedArrayList<>();
+        ArrayList<Activity> activities = new ArrayList<Activity>();
+        SortedArrayList<Activity> sortedActivities = new SortedArrayList<Activity>(activities);
         HashMap<String, Integer> eachCustomerActivities = new HashMap<>();
-        SortedArrayList<Customer> customers = new SortedArrayList<>();
+        ArrayList<Customer> sortedCustomers = new ArrayList<>();
 
         try (
                 Scanner fileReader = new Scanner(Paths.get("input.txt"))) {
 
             int numberOfActivities = Integer.parseInt(fileReader.nextLine()); //taking the first line to use in a for loop
+            System.out.println("Number of activities registered: " + numberOfActivities);
             /*
             for loop to add activities to the arraylist and builds a hashmap of activities which can be used in the customer object
              */
@@ -26,7 +28,12 @@ public class Main {
                 String activityName = fileReader.nextLine();
                 int activityTickets = Integer.parseInt(fileReader.nextLine());
                 Activity activityElement = new Activity(activityName, activityTickets);
-                activities.sortedArrayList();
+                if (sortedActivities.size() == 0) {
+                    sortedActivities.add(activityElement);
+                } else {
+                    sortedActivities.addElement(activityElement);
+                }
+                //note: the activities arrayList will always be empty
                 eachCustomerActivities.put(activityName,0);
             }
 
@@ -41,7 +48,7 @@ public class Main {
                 String firstName = fullName[0];
                 String surname = fullName[1];
                 Customer customer = new Customer(firstName, surname, eachCustomerActivities);
-                customers.add(customer);
+                //customers.add(customer);
             }
 
         } catch (FileNotFoundException e) {
@@ -53,9 +60,10 @@ public class Main {
          Yes, I'll need the sorted lists in order to confirm that activity/customer exist efficiently
          */
         //test to see whether all activities/customers are registered to arraylists - pass x2
-        //System.out.println(activities);
+        System.out.println(sortedActivities);
         //System.out.println(customers);
 
+        /*
         while (true) {
             //customer choices
             System.out.println("Select an option:");
@@ -97,5 +105,8 @@ public class Main {
                 System.out.println("You have selected an invalid option, try again");
             }
         }
+
+         */
     }
+
 }
