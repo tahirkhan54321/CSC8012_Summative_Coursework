@@ -18,7 +18,7 @@ public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
             System.out.println("size is: " + list.size()); // this would suggest that I'm running the below on the wrong thing (i.e. not this.aL)
             for (int i = 0; i < list.size(); i++) {
                 if (addToList.compareTo((E) list.get(i)) < 0) { //TODO: is this the right way around?
-                    System.out.println(list.get(i) + "is less than " + addToList);
+                    System.out.println(addToList + " is less than " + list.get(i));
                     list.add(i, addToList);
                     System.out.println(list);
                     break;
@@ -27,7 +27,7 @@ public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
                 //TODO: this either does nothing or maybe prints letter?
                 //}
                 else if (addToList.compareTo((E) list.get(i)) > 0 && i == list.size()-1) { //TODO: is this the right way around?
-                    System.out.println(list.get(i) + "is greater than " + addToList);
+                    System.out.println(addToList + " is greater than " + list.get(i));
                     list.add(i, addToList);
                     System.out.println(list);
                     break;
