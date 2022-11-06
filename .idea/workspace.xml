@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="First version of sortedarraylist done">
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Revised version with no errors for activities but logic is unsound">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SortedArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SortedArrayList.java" afterDir="false" />
@@ -54,7 +54,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1667222825617</updated>
-      <workItem from="1667222827089" duration="35812000" />
+      <workItem from="1667222827089" duration="36394000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft">
       <created>1667585596504</created>
@@ -70,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667677538774</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Revised version with no errors for activities but logic is unsound">
+      <created>1667714643734</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667714643734</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +98,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First Draft" />
     <MESSAGE value="First version of sortedarraylist done" />
-    <option name="LAST_COMMIT_MESSAGE" value="First version of sortedarraylist done" />
+    <MESSAGE value="Revised version with no errors for activities but logic is unsound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revised version with no errors for activities but logic is unsound" />
   </component>
 </project>

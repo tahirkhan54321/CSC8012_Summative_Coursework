@@ -31,7 +31,7 @@ public class Main {
                 if (sortedActivities.size() == 0) {
                     sortedActivities.add(activityElement);
                 } else {
-                    sortedActivities.addElement(activityElement);
+                    sortedActivities.addElement(sortedActivities, activityElement);
                 }
                 //note: the activities arrayList will always be empty
                 eachCustomerActivities.put(activityName,0);
