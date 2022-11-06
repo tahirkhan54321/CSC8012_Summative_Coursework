@@ -28,12 +28,8 @@ public class Main {
                 String activityName = fileReader.nextLine();
                 int activityTickets = Integer.parseInt(fileReader.nextLine());
                 Activity activityElement = new Activity(activityName, activityTickets);
-                if (sortedActivities.size() == 0) {
-                    sortedActivities.add(activityElement);
-                } else {
-                    sortedActivities.addElement(sortedActivities, activityElement);
-                }
-                //note: the activities arrayList will always be empty
+
+                sortedActivities.addElement(sortedActivities, activityElement);
                 eachCustomerActivities.put(activityName,0);
             }
 

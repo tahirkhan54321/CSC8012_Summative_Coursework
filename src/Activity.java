@@ -29,9 +29,16 @@ public class Activity implements Comparable<Activity> {
     public int compareTo(Activity activity) {
         int activityComparison = this.activityName.compareTo(activity.getActivityName());
         if (activityComparison !=0) {
+            /* tests
+            System.out.println("activity going into compareTo method: " + activity.getActivityName()
+                    + " comparing to: " + this.activityName);
+            System.out.println(activityComparison);
+             */
             return activityComparison;
         }
-        return 0;
+        else {
+            return 0;
+        }
     }
 
     //TODO: Make this an appropriate format for output
