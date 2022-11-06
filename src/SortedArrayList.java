@@ -28,7 +28,7 @@ public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
                 //}
                 else if (addToList.compareTo((E) list.get(i)) > 0 && i == list.size()-1) { //TODO: is this the right way around?
                     System.out.println(addToList + " is greater than " + list.get(i));
-                    list.add(i, addToList);
+                    list.add(i+1, addToList);
                     System.out.println(list);
                     break;
                 }
