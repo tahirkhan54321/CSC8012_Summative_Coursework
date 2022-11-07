@@ -1,4 +1,4 @@
-public class Activity implements Comparable<Activity> {
+public class Activity implements Comparable<Activity>  {
 
     private String activityName;
     private int maxNumberOfTickets;

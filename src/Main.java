@@ -11,16 +11,17 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList<Activity> activities = new ArrayList<Activity>();
-        SortedArrayList<Activity> sortedActivities = new SortedArrayList<Activity>(activities);
+        SortedArrayList<Activity> sortedActivities = new SortedArrayList<Activity>();
+        SortedArrayList<Customer> sortedCustomers = new SortedArrayList<Customer>();
         HashMap<String, Integer> eachCustomerActivities = new HashMap<>();
-        ArrayList<Customer> sortedCustomers = new ArrayList<>();
+        ArrayList<Activity> activities = new ArrayList<Activity>();
+        ArrayList<Customer> customers = new ArrayList<Customer>();
 
         try (
                 Scanner fileReader = new Scanner(Paths.get("input.txt"))) {
 
             int numberOfActivities = Integer.parseInt(fileReader.nextLine()); //taking the first line to use in a for loop
-            System.out.println("Number of activities registered: " + numberOfActivities);
+            System.out.println("Number of activities registered: " + numberOfActivities); //test
             /*
             for loop to add activities to the arraylist and builds a hashmap of activities which can be used in the customer object
              */
@@ -32,9 +33,12 @@ public class Main {
                 sortedActivities.addElement(sortedActivities, activityElement);
                 eachCustomerActivities.put(activityName,0);
             }
+            activities = sortedActivities;
+            System.out.println(activities); //Test
 
             // start populating the customers arraylist
             int numberOfCustomers = Integer.parseInt(fileReader.nextLine());
+            System.out.println("Number of customers registered: " + numberOfCustomers); //test
             /*
             for loop to add customers to the arraylist
              */
@@ -44,22 +48,19 @@ public class Main {
                 String firstName = fullName[0];
                 String surname = fullName[1];
                 Customer customer = new Customer(firstName, surname, eachCustomerActivities);
-                //customers.add(customer);
+                sortedCustomers.addElement(sortedCustomers, customer);
             }
+            customers = sortedCustomers;
+            System.out.println(customers); //Test
 
         } catch (FileNotFoundException e) {
             e.printStackTrace(); //TODO: change this to something more meaningful
         }
-
-        /*
-        TODO: Should I sort the lists at this point?
-         Yes, I'll need the sorted lists in order to confirm that activity/customer exist efficiently
-         */
         //test to see whether all activities/customers are registered to arraylists - pass x2
         System.out.println(sortedActivities);
         //System.out.println(customers);
 
-        /*
+
         while (true) {
             //customer choices
             System.out.println("Select an option:");
@@ -73,23 +74,29 @@ public class Main {
             if (userChoice.equals("f")) {
                 break;
             } else if (userChoice.equals("a")) {
-                activities.toString();
+                sortedActivities.toString();
             } else if (userChoice.equals("c")) {
-                customers.toString();
+                sortedCustomers.toString();
             } else if (userChoice.equals("t")) {
                 // TODO: finish logic in here
+                //t - to update the stored data when tickets are bought by one of the registered customers.
                 String foundName;
-                System.out.println("What is your name?");
+                System.out.println("What is your full name?");
                 String nameLine = scanner.nextLine();
                 String fullName[] = nameLine.split(" ");
                 String firstName = fullName[0];
                 String surname = fullName[1];
-                for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
-                    if (customer.getFirstName().equals(fullName) && customer.getSurname().equals(surname)) {
+                for (Customer customer: customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
+                    if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
+                        //customer is valid
                         foundName = fullName + " " + surname;
+                        System.out.println("What is the activity you'd like to buy tickets for?");
+                        String activityRequested = scanner.nextLine();
                     } else {
+                        //customer is invalid - probably shouldn't do anything for each element of the list
                         //TODO: print some kind of letter or return something.
                     }
+
                 }
                 System.out.println("Which activity would you like to purchase tickets for?");
                 String activityName = scanner.nextLine();
@@ -102,7 +109,7 @@ public class Main {
             }
         }
 
-         */
+
     }
 
 }

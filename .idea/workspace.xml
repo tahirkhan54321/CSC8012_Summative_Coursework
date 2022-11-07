@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Revised version with populated arraylist but first element ends up at the end of the arraylist">
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="SortedArrayList now working for activity, need to check for customer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SortedArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SortedArrayList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +92,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667766839237</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="SortedArrayList now working for activity, need to check for customer">
+      <created>1667767019075</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667767019075</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +123,7 @@
     <MESSAGE value="Revised version with no errors for activities but logic is unsound" />
     <MESSAGE value="Revised version populated arraylist but unordered" />
     <MESSAGE value="Revised version with populated arraylist but first element ends up at the end of the arraylist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revised version with populated arraylist but first element ends up at the end of the arraylist" />
+    <MESSAGE value="SortedArrayList now working for activity, need to check for customer" />
+    <option name="LAST_COMMIT_MESSAGE" value="SortedArrayList now working for activity, need to check for customer" />
   </component>
 </project>
