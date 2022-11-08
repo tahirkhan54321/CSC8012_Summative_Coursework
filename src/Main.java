@@ -89,16 +89,8 @@ public class Main {
                 String nameLine = scanner.nextLine();
                 boolean validName = true;
                 try {
-                    String fullName[] = nameLine.split(" ");
-                    String firstName = fullName[0];
-                    String surname = fullName[1];
-                    for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
-                        if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
-                            //customer is valid
-                            confirmedName = fullName + " " + surname;
-                            confirmedCustomer = customer;
-                        }
-                    }
+                    confirmedName = populateConfirmedCustomerName(nameLine, customers, confirmedName);
+                    confirmedCustomer = populateConfirmedCustomer(nameLine, customers, confirmedCustomer);
                     if (confirmedName == null) {
                         System.out.println("Your customer name was invalid. The request has not been processed.");
                     }
@@ -113,16 +105,10 @@ public class Main {
                 //checking activity exists
                 System.out.println("What is the name of the activity you'd like to buy tickets for?");
                 String activityRequested = scanner.nextLine();
-                Activity confirmedActivity = new Activity(null, 0);
                 String confirmedActivityName = null;
-                for (Activity activity : activities) {
-                    if (activity.getActivityName().equals(activityRequested)) {
-                        //activity is valid
-                        confirmedActivityName = activityRequested;
-                        confirmedActivity = activity;
-                        break;
-                    }
-                }
+                Activity confirmedActivity = new Activity(null, 0);
+                confirmedActivityName = populateConfirmedActivityName(activities, activityRequested, confirmedActivityName);
+                confirmedActivity = populateConfirmedActivity(activities, activityRequested, confirmedActivity);
                 if (confirmedActivityName == null) {
                     System.out.println("Your activity name was invalid. The request has not been processed.");
                     continue;
@@ -144,7 +130,6 @@ public class Main {
                                 "The request has not been processed");
                         noOfTicketsBoughtValidity = false;
                     }
-
                 }
 
                 //adding the tickets for the activity to the customer
@@ -163,9 +148,103 @@ public class Main {
             } else if (userChoice.equals("r")) {
                 //TODO: add logic in here
                 //r - to update the stored data when a registered customer cancels tickets for a booking.
+
+                //checking name exists
+                System.out.println("What is your full name?");
+                String confirmedName = null;
+                Customer confirmedCustomer = new Customer(null, null, null);
+                String nameLine = scanner.nextLine();
+                boolean validName = true;
+                try {
+                    confirmedName = populateConfirmedCustomerName(nameLine, customers, confirmedName);
+                    confirmedCustomer = populateConfirmedCustomer(nameLine, customers, confirmedCustomer);
+                    if (confirmedName == null) {
+                        System.out.println("Your customer name was invalid. The request has not been processed.");
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("You haven't included both a first name and last name separated by a space.");
+                    validName = false;
+                }
+                if (validName == false) {
+                    continue;
+                }
+
+                //checking activity exists
+                System.out.println("What is the name of the activity you'd like to buy tickets for?");
+                String activityRequested = scanner.nextLine();
+                String confirmedActivityName = null;
+                Activity confirmedActivity = new Activity(null, 0);
+                confirmedActivityName = populateConfirmedActivityName(activities, activityRequested, confirmedActivityName);
+                confirmedActivity = populateConfirmedActivity(activities, activityRequested, confirmedActivity);
+                if (confirmedActivityName == null) {
+                    System.out.println("Your activity name was invalid. The request has not been processed.");
+                    continue;
+                }
+
+                //checking if there are enough tickets left for the activity
+                System.out.println("How many tickets would you like to buy?");
+                int numberOfTickets = Integer.valueOf(scanner.nextLine());
+                boolean noOfTicketsSoldValidity = false;
+
+
+                //adding the tickets for the activity to the customer
+
+
             } else {
                 System.out.println("You have selected an invalid option, try again");
             }
         }
+    }
+
+    private static String populateConfirmedCustomerName(String nameLine, ArrayList<Customer> customers,
+                                                        String confirmedName) {
+        String fullName[] = nameLine.split(" ");
+        String firstName = fullName[0];
+        String surname = fullName[1];
+        for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
+            if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
+                //customer is valid
+                confirmedName = fullName + " " + surname;
+            }
+        }
+        return confirmedName;
+    }
+
+    private static Customer populateConfirmedCustomer(String nameLine, ArrayList<Customer> customers,
+                                                            Customer confirmedCustomer) {
+        String fullName[] = nameLine.split(" ");
+        String firstName = fullName[0];
+        String surname = fullName[1];
+        for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
+            if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
+                //customer is valid
+                confirmedCustomer = customer;
+            }
+        }
+        return confirmedCustomer;
+    }
+
+    private static String populateConfirmedActivityName(ArrayList<Activity> activities,
+                                                    String activityRequested, String confirmedActivityName) {
+        for (Activity activity : activities) {
+            if (activity.getActivityName().equals(activityRequested)) {
+                //activity is valid
+                confirmedActivityName = activityRequested;
+                break;
+            }
+        }
+        return confirmedActivityName;
+    }
+
+    private static Activity populateConfirmedActivity(ArrayList<Activity> activities,
+                                                    String activityRequested, Activity confirmedActivity) {
+        for (Activity activity : activities) {
+            if (activity.getActivityName().equals(activityRequested)) {
+                //activity is valid
+                confirmedActivity = activity;
+                break;
+            }
+        }
+        return confirmedActivity;
     }
 }
