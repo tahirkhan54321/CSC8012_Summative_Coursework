@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Diagnostic tests for SortedArrayList commented out">
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Hashmap issue fixed - each customer's hashmap was pointing to the same location in memory. Fixed using a 'new' hashmap variable on line 50 of the main.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +104,28 @@
       <option name="project" value="LOCAL" />
       <updated>1667840221862</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Option t finished but not tested - associated methods in customer and activity added. Removed a couple of for loops and added objects for confirmedCustomer and confirmedActivity instead.">
+      <created>1667916196051</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667916196051</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Option t finished but not tested - associated methods in customer and activity added. Removed a couple of for loops and added objects for confirmedCustomer and confirmedActivity instead.">
+      <created>1667916325137</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667916325137</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Hashmap issue fixed - each customer's hashmap was pointing to the same location in memory. Fixed using a 'new' hashmap variable on line 50 of the main.">
+      <created>1667926629237</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1667926629237</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -132,6 +151,8 @@
     <MESSAGE value="Revised version with populated arraylist but first element ends up at the end of the arraylist" />
     <MESSAGE value="SortedArrayList now working for activity, need to check for customer" />
     <MESSAGE value="Diagnostic tests for SortedArrayList commented out" />
-    <option name="LAST_COMMIT_MESSAGE" value="Diagnostic tests for SortedArrayList commented out" />
+    <MESSAGE value="Option t finished but not tested - associated methods in customer and activity added. Removed a couple of for loops and added objects for confirmedCustomer and confirmedActivity instead." />
+    <MESSAGE value="Hashmap issue fixed - each customer's hashmap was pointing to the same location in memory. Fixed using a 'new' hashmap variable on line 50 of the main." />
+    <option name="LAST_COMMIT_MESSAGE" value="Hashmap issue fixed - each customer's hashmap was pointing to the same location in memory. Fixed using a 'new' hashmap variable on line 50 of the main." />
   </component>
 </project>

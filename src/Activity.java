@@ -25,13 +25,13 @@ public class Activity implements Comparable<Activity>  {
     }
 
     //conditionals for validity of buying a ticket are located in the main method.
-    public int buyATicket(int buyTickets) {
+    public int buyTickets(int buyTickets) {
         return this.maxNumberOfTicketsAvailable -= buyTickets;
     }
 
     //on aggregate, customers can't sell more tickets than those which have been bought.
     //so maxNumberOfTickets available can't exceed the original amount from the input file, no need for a check in this method
-    public int sellATicket(int sellTickets) {
+    public int sellTickets(int sellTickets) {
         return this.maxNumberOfTicketsAvailable += sellTickets;
     }
 

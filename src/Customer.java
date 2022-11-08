@@ -4,19 +4,14 @@ public class Customer implements Comparable<Customer> {
 
     private String firstName;
     private String surname;
-    private int numberOfActivities;
-    /*
-     do I even need to split this by first name and last name?
-     - Yes in order to sort lexicographically by surname first
-     */
     private HashMap<String, Integer> chosenActivities;
     private int uniqueActivityCounter = 0;
+    private static final int MAXNUMBEROFACTIVITIES = 3;
 
     public Customer(String firstName, String surname, HashMap<String, Integer> chosenActivities) {
         this.firstName = firstName;
         this.surname = surname;
         this.chosenActivities = chosenActivities;
-        numberOfActivities = 0;
     }
 
     public String getFirstName() {
@@ -28,7 +23,7 @@ public class Customer implements Comparable<Customer> {
     }
 
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     public void setSurname(String surname) {
@@ -36,24 +31,32 @@ public class Customer implements Comparable<Customer> {
     }
 
     public HashMap<String, Integer> getChosenActivities() {
-        return chosenActivities;
+        return this.chosenActivities;
     }
 
     public void setChosenActivities(HashMap<String, Integer> chosenActivities) {
         this.chosenActivities = chosenActivities;
     }
 
+    public int getUniqueActivityCounter() {
+        return this.uniqueActivityCounter;
+    }
+
+    public void setUniqueActivityCounter(int uniqueActivityCounter) {
+        this.uniqueActivityCounter = uniqueActivityCounter;
+    }
+
     public void boughtTickets(int tickets, String activity) {
-        if(uniqueActivityCounter < 3) {
-            int totalTickets = tickets + this.chosenActivities.get(activity);
-            this.chosenActivities.put(activity, totalTickets);
-        } else {
-            System.out.println("You can't buy tickets for more activities, this request has not been processed.");
-        }
-        if (chosenActivities.get(activity) == 0) {
+        if (this.chosenActivities.get(activity) == 0) {
             uniqueActivityCounter++;
         }
+        if(uniqueActivityCounter <= MAXNUMBEROFACTIVITIES) {
+            int totalTickets = tickets + this.chosenActivities.get(activity);
+            this.chosenActivities.put(activity, totalTickets);
+        }
     }
+
+    //TODO: add soldTickets method
 
     @Override
     public int compareTo(Customer customer) {
