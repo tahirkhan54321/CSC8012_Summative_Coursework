@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="The main now passes all tests for option t as indicated by the testing matrix from excel.">
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="popluating confirmed activity and confirmed customer has been split into methods.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SortedArrayList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SortedArrayList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667926629237</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="popluating confirmed activity and confirmed customer has been split into methods.">
+      <created>1667940628189</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667940628189</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +162,7 @@
     <MESSAGE value="Diagnostic tests for SortedArrayList commented out" />
     <MESSAGE value="Option t finished but not tested - associated methods in customer and activity added. Removed a couple of for loops and added objects for confirmedCustomer and confirmedActivity instead." />
     <MESSAGE value="Hashmap issue fixed - each customer's hashmap was pointing to the same location in memory. Fixed using a 'new' hashmap variable on line 50 of the main." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hashmap issue fixed - each customer's hashmap was pointing to the same location in memory. Fixed using a 'new' hashmap variable on line 50 of the main." />
+    <MESSAGE value="popluating confirmed activity and confirmed customer has been split into methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="popluating confirmed activity and confirmed customer has been split into methods." />
   </component>
 </project>

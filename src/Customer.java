@@ -4,14 +4,14 @@ public class Customer implements Comparable<Customer> {
 
     private String firstName;
     private String surname;
-    private HashMap<String, Integer> chosenActivities;
+    private HashMap<String, Integer> activityMap;
     private int uniqueActivityCounter = 0;
     private static final int MAXNUMBEROFACTIVITIES = 3;
 
-    public Customer(String firstName, String surname, HashMap<String, Integer> chosenActivities) {
+    public Customer(String firstName, String surname, HashMap<String, Integer> activityMap) {
         this.firstName = firstName;
         this.surname = surname;
-        this.chosenActivities = chosenActivities;
+        this.activityMap = activityMap;
     }
 
     public String getFirstName() {
@@ -30,12 +30,12 @@ public class Customer implements Comparable<Customer> {
         this.surname = surname;
     }
 
-    public HashMap<String, Integer> getChosenActivities() {
-        return this.chosenActivities;
+    public HashMap<String, Integer> getActivityMap() {
+        return this.activityMap;
     }
 
-    public void setChosenActivities(HashMap<String, Integer> chosenActivities) {
-        this.chosenActivities = chosenActivities;
+    public void setActivityMap(HashMap<String, Integer> activityMap) {
+        this.activityMap = activityMap;
     }
 
     public int getUniqueActivityCounter() {
@@ -47,16 +47,23 @@ public class Customer implements Comparable<Customer> {
     }
 
     public void boughtTickets(int tickets, String activity) {
-        if (this.chosenActivities.get(activity) == 0) {
+        if (this.activityMap.get(activity) == 0) {
             uniqueActivityCounter++;
         }
         if(uniqueActivityCounter <= MAXNUMBEROFACTIVITIES) {
-            int totalTickets = tickets + this.chosenActivities.get(activity);
-            this.chosenActivities.put(activity, totalTickets);
+            int totalTickets = this.activityMap.get(activity) + tickets;
+            this.activityMap.put(activity, totalTickets);
         }
     }
 
-    //TODO: add soldTickets method
+    public void soldTickets(int tickets, String activity) {
+        int ticketsLeftover = this.activityMap.get(activity) - tickets;
+        this.activityMap.put(activity, ticketsLeftover);
+    }
+
+    public void clearedTicketsFromActivity() {
+        uniqueActivityCounter--;
+    }
 
     @Override
     public int compareTo(Customer customer) {
@@ -78,7 +85,7 @@ public class Customer implements Comparable<Customer> {
         return "Customer{" +
                 "firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
-                ", chosenActivities=" + chosenActivities +
+                ", chosenActivities=" + activityMap +
                 '}';
     }
 

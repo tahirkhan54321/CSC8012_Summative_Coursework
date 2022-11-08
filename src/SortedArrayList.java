@@ -21,13 +21,8 @@ public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
                        System.out.println(addToList + " is less than " + list.get(i));
                        System.out.println(list);
                      */
-
                     break;
                 }
-                /* if (this.aL.get(i).compareTo(addToList) == 0) {
-                }
-                TODO: this either does nothing or maybe prints letter?
-                 */
                 /* the conditions below can only be met if we've looped through the entire existing arraylist
                    if we've not found anything that addToList is less than,
                    then we can assume it can be added to the end of the list
@@ -40,6 +35,7 @@ public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
                      */
                     break;
                 }
+                //(this.aL.get(i).compareTo(addToList) == 0) this case can never happen due to the assumptions in the problem
             }
         }
         return list;

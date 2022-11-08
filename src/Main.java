@@ -170,7 +170,7 @@ public class Main {
                 }
 
                 //checking activity exists
-                System.out.println("What is the name of the activity you'd like to buy tickets for?");
+                System.out.println("What is the name of the activity you'd like to sell tickets for?");
                 String activityRequested = scanner.nextLine();
                 String confirmedActivityName = null;
                 Activity confirmedActivity = new Activity(null, 0);
@@ -182,13 +182,30 @@ public class Main {
                 }
 
                 //checking if there are enough tickets left for the activity
-                System.out.println("How many tickets would you like to buy?");
+                //if each customer can only sell as many tickets as they own and no more,
+                //then the aggregate number of tickets for the activity can't exceed the original amount by the act of selling tickets back
+                System.out.println("How many tickets would you like to sell?");
                 int numberOfTickets = Integer.valueOf(scanner.nextLine());
                 boolean noOfTicketsSoldValidity = false;
+                int ticketsRemainingForCustomer = confirmedCustomer.getActivityMap().get(confirmedActivityName)
+                        - numberOfTickets;
+                if (ticketsRemainingForCustomer >= 0) {
+                    confirmedCustomer.soldTickets(numberOfTickets, confirmedActivityName);
+                    confirmedActivity.sellTickets(numberOfTickets);
+                    noOfTicketsSoldValidity = true;
+                }
+                if (ticketsRemainingForCustomer == 0) {
+                    //want to decrement activity uniqueCounter
+                    confirmedCustomer.clearedTicketsFromActivity();
+                }
+                if (ticketsRemainingForCustomer < 0) {
+                    System.out.println("You have tried to sell more tickets than you own. " +
+                            "The request has not been processed.");
+                }
 
-
-                //adding the tickets for the activity to the customer
-
+                //print statement to test output
+                System.out.println("activity we sold tickets for: " + confirmedActivity +
+                        "customer we removed tickets from: " + confirmedCustomer);
 
             } else {
                 System.out.println("You have selected an invalid option, try again");
