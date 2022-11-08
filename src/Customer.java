@@ -10,9 +10,7 @@ public class Customer implements Comparable<Customer> {
      - Yes in order to sort lexicographically by surname first
      */
     private HashMap<String, Integer> chosenActivities;
-    /* TODO: do I need a counter field to increment/decrement the number of activities booked?
-        TODO: Would this be better than counting the number of values in the Hashmap?
-     */
+    private int uniqueActivityCounter = 0;
 
     public Customer(String firstName, String surname, HashMap<String, Integer> chosenActivities) {
         this.firstName = firstName;
@@ -45,8 +43,19 @@ public class Customer implements Comparable<Customer> {
         this.chosenActivities = chosenActivities;
     }
 
+    public void boughtTickets(int tickets, String activity) {
+        if(uniqueActivityCounter < 3) {
+            int totalTickets = tickets + this.chosenActivities.get(activity);
+            this.chosenActivities.put(activity, totalTickets);
+        } else {
+            System.out.println("You can't buy tickets for more activities, this request has not been processed.");
+        }
+        if (chosenActivities.get(activity) == 0) {
+            uniqueActivityCounter++;
+        }
+    }
+
     @Override
-    //TODO: Add the logic in here
     public int compareTo(Customer customer) {
             int lastNameComparison = this.surname.compareTo(customer.surname);
             if (lastNameComparison !=0) {

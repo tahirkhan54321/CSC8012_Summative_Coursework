@@ -1,11 +1,11 @@
 public class Activity implements Comparable<Activity>  {
 
     private String activityName;
-    private int maxNumberOfTickets;
+    private int maxNumberOfTicketsAvailable;
 
     public Activity(String activityName, int maxNumberOfTickets) {
         this.activityName = activityName;
-        this.maxNumberOfTickets = maxNumberOfTickets;
+        this.maxNumberOfTicketsAvailable = maxNumberOfTickets;
     }
 
     public String getActivityName() {
@@ -16,15 +16,25 @@ public class Activity implements Comparable<Activity>  {
         this.activityName = activityName;
     }
 
-    public int getMaxNumberOfTickets() {
-        return maxNumberOfTickets;
+    public int getmaxNumberOfTicketsAvailable() {
+        return maxNumberOfTicketsAvailable;
     }
 
-    public void setMaxNumberOfTickets(int maxNumberOfTickets) {
-        this.maxNumberOfTickets = maxNumberOfTickets;
+    public void setmaxNumberOfTicketsAvailable(int maxNumberOfTickets) {
+        this.maxNumberOfTicketsAvailable = maxNumberOfTickets;
     }
 
-    //TODO: check this logic is the right way around
+    //conditionals for validity of buying a ticket are located in the main method.
+    public int buyATicket(int buyTickets) {
+        return this.maxNumberOfTicketsAvailable -= buyTickets;
+    }
+
+    //on aggregate, customers can't sell more tickets than those which have been bought.
+    //so maxNumberOfTickets available can't exceed the original amount from the input file, no need for a check in this method
+    public int sellATicket(int sellTickets) {
+        return this.maxNumberOfTicketsAvailable += sellTickets;
+    }
+
     @Override
     public int compareTo(Activity activity) {
         int activityComparison = this.activityName.compareTo(activity.getActivityName());
@@ -46,7 +56,7 @@ public class Activity implements Comparable<Activity>  {
     public String toString() {
         return "Activity{" +
                 "activityName='" + activityName + '\'' +
-                ", maxNumberOfTickets=" + maxNumberOfTickets +
+                ", maxNumberOfTickets=" + maxNumberOfTicketsAvailable +
                 '}';
     }
 }

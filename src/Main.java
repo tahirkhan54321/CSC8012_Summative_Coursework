@@ -31,7 +31,7 @@ public class Main {
                 Activity activityElement = new Activity(activityName, activityTickets);
 
                 sortedActivities.addElement(sortedActivities, activityElement);
-                eachCustomerActivities.put(activityName,0);
+                eachCustomerActivities.put(activityName, 0);
             }
             activities = sortedActivities;
             System.out.println(activities); //Test
@@ -74,33 +74,78 @@ public class Main {
             if (userChoice.equals("f")) {
                 break;
             } else if (userChoice.equals("a")) {
-                sortedActivities.toString();
+                activities.toString();
             } else if (userChoice.equals("c")) {
-                sortedCustomers.toString();
+                customers.toString();
             } else if (userChoice.equals("t")) {
                 // TODO: finish logic in here
                 //t - to update the stored data when tickets are bought by one of the registered customers.
-                String foundName;
+
+                //checking name exists
                 System.out.println("What is your full name?");
+                String confirmedName = null;
+                Customer confirmedCustomer = new Customer(null, null, null);
                 String nameLine = scanner.nextLine();
                 String fullName[] = nameLine.split(" ");
                 String firstName = fullName[0];
                 String surname = fullName[1];
-                for (Customer customer: customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
+                for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
                     if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
                         //customer is valid
-                        foundName = fullName + " " + surname;
-                        System.out.println("What is the activity you'd like to buy tickets for?");
-                        String activityRequested = scanner.nextLine();
+                        confirmedName = fullName + " " + surname;
+                        confirmedCustomer = customer;
+                    }
+                }
+                if (confirmedName == null) {
+                    System.out.println("Your customer name was invalid");
+                    continue;
+                }
+
+                //checking activity exists
+                System.out.println("What is the name of the activity you'd like to buy tickets for?");
+                String activityRequested = scanner.nextLine();
+                Activity confirmedActivity = new Activity(null, 0);
+                String confirmedActivityName = null;
+                for (Activity activity : activities) {
+                    if (activity.getActivityName().equals(activityRequested)) {
+                        //activity is valid
+                        confirmedActivityName = activityRequested;
+                        confirmedActivity = activity;
+                        break;
                     } else {
-                        //customer is invalid - probably shouldn't do anything for each element of the list
-                        //TODO: print some kind of letter or return something.
+                        //activity invalid - probably shouldn't do anything for each element of the list
+                    }
+                }
+                if (confirmedActivityName == null) {
+                    System.out.println("Your activity name was invalid");
+                    continue;
+                }
+
+                //checking if there are enough tickets left for the activity
+                System.out.println("How many tickets would you like to buy?");
+                int numberOfTickets = Integer.valueOf(scanner.nextLine());
+                boolean ticketsBoughtValidity = true;
+                if (numberOfTickets <= 0) {
+                    System.out.println("You have input an invalid number of tickets." +
+                            "The request has not been processed.");
+                    ticketsBoughtValidity = false;
+                } else if (numberOfTickets > 0) {
+                    if (confirmedActivity.getmaxNumberOfTicketsAvailable() - numberOfTickets <= 0) {
+                        confirmedActivity.buyATicket(numberOfTickets);
+                    } else if (confirmedActivity.getmaxNumberOfTicketsAvailable() > 0) {
+                        System.out.println("There are not enough tickets available for this activity.");
+                        ticketsBoughtValidity = false;
                     }
 
                 }
-                System.out.println("Which activity would you like to purchase tickets for?");
-                String activityName = scanner.nextLine();
-                //TODO: add a searching algorithm here to find the activity stored in activityName
+
+                //adding the tickets for the activity to the customer
+                if (ticketsBoughtValidity == true) {
+                    confirmedCustomer.boughtTickets(numberOfTickets, activityRequested);
+                }
+
+                //test
+                System.out.println();
 
             } else if (userChoice.equals("r")) {
                 //TODO: add logic in here
@@ -108,8 +153,5 @@ public class Main {
                 System.out.println("You have selected an invalid option, try again");
             }
         }
-
-
     }
-
 }
