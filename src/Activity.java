@@ -54,9 +54,6 @@ public class Activity implements Comparable<Activity>  {
     //TODO: Make this an appropriate format for output
     @Override
     public String toString() {
-        return "Activity{" +
-                "activityName='" + activityName + '\'' +
-                ", maxNumberOfTickets=" + maxNumberOfTicketsAvailable +
-                '}';
+        return this.activityName + " has " + this.maxNumberOfTicketsAvailable + " tickets available.";
     }
 }

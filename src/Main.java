@@ -70,10 +70,11 @@ public class Main {
             if (userChoice.equals("f")) {
                 break;
             } else if (userChoice.equals("a")) {
-                activities.toString();
+                printActivities(activities);
+                System.out.println("");
             } else if (userChoice.equals("c")) {
                 customers.toString();
-            } else if (userChoice.equals("t")) {
+            } else if (userChoice.equals("t") || userChoice.equals("r")) {
                 // TODO: finish logic in here
                 //t - to update the stored data when tickets are bought by one of the registered customers.
 
@@ -98,7 +99,7 @@ public class Main {
                 }
 
                 //checking activity exists
-                System.out.println("What is the name of the activity you'd like to buy tickets for?");
+                System.out.println("What is the name of the activity you'd like to update tickets for?");
                 String activityRequested = scanner.nextLine();
                 String confirmedActivityName = null;
                 Activity confirmedActivity = new Activity(null, 0);
@@ -109,98 +110,74 @@ public class Main {
                     continue;
                 }
 
-                //checking if there are enough tickets left for the activity
-                System.out.println("How many tickets would you like to buy?");
-                int numberOfTickets = Integer.valueOf(scanner.nextLine());
-                boolean noOfTicketsBoughtValidity = false;
-                if (numberOfTickets <= 0) {
-                    System.out.println("You have input an invalid number of tickets." +
-                            "The request has not been processed.");
-                    noOfTicketsBoughtValidity = false;
-                } else if (numberOfTickets > 0) {
-                    if (confirmedActivity.getmaxNumberOfTicketsAvailable() - numberOfTickets >= 0) {
-                        noOfTicketsBoughtValidity = true;
-                    } else if (confirmedActivity.getmaxNumberOfTicketsAvailable() - numberOfTickets < 0) {
-                        System.out.println("There are not enough tickets available for this activity." +
-                                "The request has not been processed");
+                if (userChoice.equals("t")) {
+
+                    //checking if there are enough tickets left for the activity
+                    System.out.println("How many tickets would you like to buy?");
+                    int numberOfTickets = Integer.valueOf(scanner.nextLine());
+                    boolean noOfTicketsBoughtValidity = false;
+                    if (numberOfTickets <= 0) {
+                        System.out.println("You have input an invalid number of tickets." +
+                                "The request has not been processed.");
                         noOfTicketsBoughtValidity = false;
+                    } else if (numberOfTickets > 0) {
+                        if (confirmedActivity.getmaxNumberOfTicketsAvailable() - numberOfTickets >= 0) {
+                            noOfTicketsBoughtValidity = true;
+                        } else if (confirmedActivity.getmaxNumberOfTicketsAvailable() - numberOfTickets < 0) {
+                            System.out.println("There are not enough tickets available for this activity." +
+                                    "The request has not been processed");
+                            noOfTicketsBoughtValidity = false;
+                        }
                     }
-                }
 
-                //adding the tickets for the activity to the customer
-                if (noOfTicketsBoughtValidity == true && confirmedCustomer.getUniqueActivityCounter() < 3) {
-                    confirmedCustomer.boughtTickets(numberOfTickets, activityRequested);
-                    confirmedActivity.buyTickets(numberOfTickets);
-                } else if (confirmedCustomer.getUniqueActivityCounter() >= 3) {
-                    System.out.println("You can only order tickets for a maximum of three activities. " +
-                            "The request has not been processed.");
-                }
-
-                //print statement to test output
-                System.out.println("activity we bought tickets for: " + confirmedActivity +
-                        "customer we added tickets to: " + confirmedCustomer);
-
-            } else if (userChoice.equals("r")) {
-                //TODO: add logic in here
-                //r - to update the stored data when a registered customer cancels tickets for a booking.
-
-                //checking name exists
-                System.out.println("What is your full name?");
-                String confirmedName = null;
-                Customer confirmedCustomer = new Customer(null, null, null);
-                String nameLine = scanner.nextLine();
-                boolean validName = true;
-                try {
-                    confirmedName = populateConfirmedCustomerName(nameLine, customers);
-                    confirmedCustomer = populateConfirmedCustomer(nameLine, customers);
-                    if (confirmedName == null) {
-                        System.out.println("Your customer name was invalid. The request has not been processed.");
+                    //adding the tickets for the activity to the customer
+                    if (noOfTicketsBoughtValidity == true && confirmedCustomer.getUniqueActivityCounter() < 3) {
+                        confirmedCustomer.boughtTickets(numberOfTickets, activityRequested);
+                        confirmedActivity.buyTickets(numberOfTickets);
+                        System.out.println("You have bought " + numberOfTickets + " tickets for " +
+                                confirmedActivityName + ".");
+                    } else if (confirmedCustomer.getUniqueActivityCounter() >= 3) {
+                        System.out.println("You can only order tickets for a maximum of three activities. " +
+                                "The request has not been processed.");
                     }
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("You haven't included both a first name and last name separated by a space.");
-                    validName = false;
-                }
-                if (validName == false) {
-                    continue;
-                }
 
-                //checking activity exists
-                System.out.println("What is the name of the activity you'd like to sell tickets for?");
-                String activityRequested = scanner.nextLine();
-                String confirmedActivityName = null;
-                Activity confirmedActivity = new Activity(null, 0);
-                confirmedActivityName = populateConfirmedActivityName(activities, activityRequested);
-                confirmedActivity = populateConfirmedActivity(activities, activityRequested);
-                if (confirmedActivityName == null) {
-                    System.out.println("Your activity name was invalid. The request has not been processed.");
-                    continue;
-                }
+                    //print statement to test output
+                    System.out.println("activity we bought tickets for: " + confirmedActivity +
+                            "customer we added tickets to: " + confirmedCustomer);
 
-                //checking if there are enough tickets left for the activity
-                //if each customer can only sell as many tickets as they own and no more,
-                //then the aggregate number of tickets for the activity can't exceed the original amount by the act of selling tickets back
-                System.out.println("How many tickets would you like to sell?");
-                int numberOfTickets = Integer.valueOf(scanner.nextLine());
-                boolean noOfTicketsSoldValidity = false;
-                int ticketsRemainingForCustomer = confirmedCustomer.getActivityMap().get(confirmedActivityName)
-                        - numberOfTickets;
-                if (ticketsRemainingForCustomer >= 0) {
-                    confirmedCustomer.soldTickets(numberOfTickets, confirmedActivityName);
-                    confirmedActivity.sellTickets(numberOfTickets);
-                    noOfTicketsSoldValidity = true;
-                }
-                if (ticketsRemainingForCustomer == 0) {
-                    //want to decrement activity uniqueCounter
-                    confirmedCustomer.clearedTicketsFromActivity();
-                }
-                if (ticketsRemainingForCustomer < 0) {
-                    System.out.println("You have tried to sell more tickets than you own. " +
-                            "The request has not been processed.");
-                }
 
-                //print statement to test output
-                System.out.println("activity we sold tickets for: " + confirmedActivity +
-                        "customer we removed tickets from: " + confirmedCustomer);
+                } else if (userChoice.equals("r")) {
+                    //TODO: add logic in here
+                    //r - to update the stored data when a registered customer cancels tickets for a booking
+
+                    //checking if there are enough tickets left for the activity
+                    //if each customer can only sell as many tickets as they own and no more,
+                    //then the aggregate number of tickets for the activity can't exceed the original amount by the act of selling tickets back
+                    System.out.println("How many tickets would you like to sell?");
+                    int numberOfTickets = Integer.valueOf(scanner.nextLine());
+                    boolean noOfTicketsSoldValidity = false;
+                    int ticketsRemainingForCustomer = confirmedCustomer.getActivityMap().get(confirmedActivityName)
+                            - numberOfTickets;
+                    if (ticketsRemainingForCustomer >= 0) {
+                        confirmedCustomer.soldTickets(numberOfTickets, confirmedActivityName);
+                        confirmedActivity.sellTickets(numberOfTickets);
+                        noOfTicketsSoldValidity = true;
+                        System.out.println("You have sold " + numberOfTickets + " tickets for " +
+                                confirmedActivityName + ".");
+                    }
+                    if (ticketsRemainingForCustomer == 0) {
+                        //want to decrement activity uniqueCounter
+                        confirmedCustomer.clearedTicketsFromActivity();
+                    }
+                    if (ticketsRemainingForCustomer < 0) {
+                        System.out.println("You have tried to sell more tickets than you own. " +
+                                "The request has not been processed.");
+                    }
+
+                    //print statement to test output
+                    System.out.println("activity we sold tickets for: " + confirmedActivity +
+                            "customer we removed tickets from: " + confirmedCustomer);
+                }
 
             } else {
                 System.out.println("You have selected an invalid option, try again");
@@ -246,8 +223,14 @@ public class Main {
         return confirmedCustomer;
     }
 
+    private static void printActivities(ArrayList<Activity> activities) {
+        for (Activity activity : activities) {
+            System.out.println(activity.toString());
+        }
+    }
+
     private static String populateConfirmedActivityName(ArrayList<Activity> activities,
-                                                    String activityRequested) {
+                                                        String activityRequested) {
         String confirmedActivityName = null;
         for (Activity activity : activities) {
             if (activity.getActivityName().equals(activityRequested)) {
@@ -260,7 +243,7 @@ public class Main {
     }
 
     private static Activity populateConfirmedActivity(ArrayList<Activity> activities,
-                                                    String activityRequested) {
+                                                      String activityRequested) {
         Activity confirmedActivity = new Activity(null, 0);
         for (Activity activity : activities) {
             if (activity.getActivityName().equals(activityRequested)) {
