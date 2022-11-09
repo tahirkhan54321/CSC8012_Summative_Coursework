@@ -88,6 +88,7 @@ public class Main {
                     confirmedCustomer = populateConfirmedCustomer(nameLine, customers);
                     if (confirmedName == null) {
                         System.out.println("Your customer name was invalid. The request has not been processed.");
+                        continue;
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("You haven't included both a first name and last name separated by a space.");
@@ -141,9 +142,12 @@ public class Main {
                                 "The request has not been processed.");
                     }
 
-                    //print statement to test output
+                    //Test statements
                     System.out.println("activity we bought tickets for: " + confirmedActivity +
                             "customer we added tickets to: " + confirmedCustomer);
+                    System.out.println("Customer's activity hashmap: " + confirmedCustomer.getActivityMap());
+                    System.out.println("Customer's unique activity count: " + confirmedCustomer.getUniqueActivityCounter());
+                    System.out.println("Activity's max no of available tickets: " + confirmedActivity.getmaxNumberOfTicketsAvailable());
 
 
                 } else if (userChoice.equals("r")) {
@@ -174,9 +178,12 @@ public class Main {
                                 "The request has not been processed.");
                     }
 
-                    //print statement to test output
-                    System.out.println("activity we sold tickets for: " + confirmedActivity +
-                            "customer we removed tickets from: " + confirmedCustomer);
+                    //Test statements
+                    System.out.println("Activity we sold tickets for: " + confirmedActivity +
+                            ". Customer we removed tickets from: " + confirmedCustomer);
+                    System.out.println("Customer's activity hashmap: " + confirmedCustomer.getActivityMap());
+                    System.out.println("Customer's unique activity count: " + confirmedCustomer.getUniqueActivityCounter());
+                    System.out.println("Activity's max no of available tickets: " + confirmedActivity.getmaxNumberOfTicketsAvailable());
                 }
 
             } else {

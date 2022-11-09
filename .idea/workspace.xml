@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Added print statement for customer choice c">
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="tidied up code and re-commented everything">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -167,7 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668008282641</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="tidied up code and re-commented everything">
+      <created>1668009920001</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1668009920001</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +209,7 @@
     <MESSAGE value="Cleaned up the methods" />
     <MESSAGE value="Added option a to print activities. Reformatted code to remove some repeated code for options t and r" />
     <MESSAGE value="Added print statement for customer choice c" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added print statement for customer choice c" />
+    <MESSAGE value="tidied up code and re-commented everything" />
+    <option name="LAST_COMMIT_MESSAGE" value="tidied up code and re-commented everything" />
   </component>
 </project>
