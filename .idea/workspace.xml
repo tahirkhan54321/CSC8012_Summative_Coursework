@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="logic added for option r but untested" />
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="turned customer choice into method">
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -129,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667940628189</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="turned customer choice into method">
+      <created>1668003054733</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668003054733</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +167,8 @@
     <MESSAGE value="Option t finished but not tested - associated methods in customer and activity added. Removed a couple of for loops and added objects for confirmedCustomer and confirmedActivity instead." />
     <MESSAGE value="Hashmap issue fixed - each customer's hashmap was pointing to the same location in memory. Fixed using a 'new' hashmap variable on line 50 of the main." />
     <MESSAGE value="popluating confirmed activity and confirmed customer has been split into methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="popluating confirmed activity and confirmed customer has been split into methods." />
+    <MESSAGE value="logic added for option r but untested" />
+    <MESSAGE value="turned customer choice into method" />
+    <option name="LAST_COMMIT_MESSAGE" value="turned customer choice into method" />
   </component>
 </project>

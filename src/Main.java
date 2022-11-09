@@ -9,7 +9,7 @@ public class Main {
 
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         SortedArrayList<Activity> sortedActivities = new SortedArrayList<Activity>();
         SortedArrayList<Customer> sortedCustomers = new SortedArrayList<Customer>();
@@ -19,26 +19,25 @@ public class Main {
 
         try {
             Scanner fileReader = new Scanner(Paths.get("input.txt"));
-
             int numberOfActivities = Integer.parseInt(fileReader.nextLine()); //taking the first line to use in a for loop
-            System.out.println("Number of activities registered: " + numberOfActivities); //test
             /*
-            for loop to add activities to the arraylist and builds a hashmap of activities which can be used in the customer object
+            for loop to add activities to the arraylist and builds a hashmap of activities
+            which can be used in the customer object
              */
             for (int i = 0; i < numberOfActivities; i++) {
                 String activityName = fileReader.nextLine();
                 int activityTickets = Integer.parseInt(fileReader.nextLine());
                 Activity activityElement = new Activity(activityName, activityTickets);
-
                 sortedActivities.addElement(sortedActivities, activityElement);
                 allCustomerActivities.put(activityName, 0);
             }
             activities = sortedActivities;
-            System.out.println(activities); //Test
+
+            //Tests
+            System.out.println("Number of activities registered: " + numberOfActivities);
 
             // start populating the customers arraylist
             int numberOfCustomers = Integer.parseInt(fileReader.nextLine());
-            System.out.println("Number of customers registered: " + numberOfCustomers); //test
             /*
             for loop to add customers to the arraylist
              */
@@ -52,14 +51,16 @@ public class Main {
                 sortedCustomers.addElement(sortedCustomers, customer);
             }
             customers = sortedCustomers;
-            System.out.println(customers); //Test
+            //Tests
+            System.out.println("Number of customers registered: " + numberOfCustomers);
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace(); //TODO: change this to something more meaningful
         }
-        //test to see whether all activities/customers are registered to arraylists - pass x2
-        System.out.println(sortedActivities);
-        //System.out.println(customers);
+
+        //tests to see whether all activities/customers are registered to arraylists - pass x2
+        System.out.println(activities);
+        System.out.println(customers);
 
 
         while (true) {
