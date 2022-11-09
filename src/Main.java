@@ -63,13 +63,7 @@ public class Main {
 
 
         while (true) {
-            //customer choices
-            System.out.println("Select an option:");
-            System.out.println("f - to finish running the program.");
-            System.out.println("a - to display on the screen information about all the activities.");
-            System.out.println("c - to display on the screen information about all the customers.");
-            System.out.println("t - to update the stored data when tickets are bought by one of the registered customers.");
-            System.out.println("r - to update the stored data when a registered customer cancels tickets for a booking.");
+            printCustomerChoices();
             String userChoice = scanner.nextLine();
 
             if (userChoice.equals("f")) {
@@ -211,6 +205,16 @@ public class Main {
                 System.out.println("You have selected an invalid option, try again");
             }
         }
+    }
+
+    private static void printCustomerChoices() {
+        //customer choices
+        System.out.println("Select an option:");
+        System.out.println("f - to finish running the program.");
+        System.out.println("a - to display on the screen information about all the activities.");
+        System.out.println("c - to display on the screen information about all the customers.");
+        System.out.println("t - to update the stored data when tickets are bought by one of the registered customers.");
+        System.out.println("r - to update the stored data when a registered customer cancels tickets for a booking.");
     }
 
     private static String populateConfirmedCustomerName(String nameLine, ArrayList<Customer> customers,
