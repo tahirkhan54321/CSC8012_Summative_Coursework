@@ -29,8 +29,9 @@ public class Activity implements Comparable<Activity>  {
         return this.maxNumberOfTicketsAvailable -= buyTickets;
     }
 
-    //on aggregate, customers can't sell more tickets than those which have been bought.
-    //so maxNumberOfTickets available can't exceed the original amount from the input file, no need for a check in this method
+    /* on aggregate, customers can't sell more tickets than those which have been bought.
+    so maxNumberOfTickets available can't exceed the original amount from the input file, no need for a check in this method
+     */
     public int sellTickets(int sellTickets) {
         return this.maxNumberOfTicketsAvailable += sellTickets;
     }

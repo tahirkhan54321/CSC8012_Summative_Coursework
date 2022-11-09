@@ -1,4 +1,7 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+
 
 public class Customer implements Comparable<Customer> {
 
@@ -7,6 +10,7 @@ public class Customer implements Comparable<Customer> {
     private HashMap<String, Integer> activityMap;
     private int uniqueActivityCounter = 0;
     private static final int MAXNUMBEROFACTIVITIES = 3;
+
 
     public Customer(String firstName, String surname, HashMap<String, Integer> activityMap) {
         this.firstName = firstName;
@@ -69,6 +73,20 @@ public class Customer implements Comparable<Customer> {
         uniqueActivityCounter--;
     }
 
+    public void notEnoughTicketsLetter(Activity activity) {
+        try {
+            PrintWriter outFile = new PrintWriter("letter.txt");
+            outFile.write("Dear " + this.getFullName() + ",\n\nUnfortunately, there are not enough tickets left for the " +
+                    "activity you've attempted to book (" + activity.getActivityName() +
+                    ").\n\nYours sincerely,\n\nTicket Operator");
+            outFile.flush();
+            outFile.close();
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("No file was printed.");
+        }
+    }
+
     @Override
     public int compareTo(Customer customer) {
             int lastNameComparison = this.surname.compareTo(customer.surname);
@@ -82,12 +100,8 @@ public class Customer implements Comparable<Customer> {
             else return 0;
     }
 
-
     @Override
-    //TODO: Make this an appropriate format for output
     public String toString() {
         return this.firstName + " " + this.surname + " has " + this.uniqueActivityCounter + " activities booked ";
     }
-
-
 }
