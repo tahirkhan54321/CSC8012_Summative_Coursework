@@ -84,8 +84,8 @@ public class Main {
                 String nameLine = scanner.nextLine();
                 boolean validName = true;
                 try {
-                    confirmedName = populateConfirmedCustomerName(nameLine, customers, confirmedName);
-                    confirmedCustomer = populateConfirmedCustomer(nameLine, customers, confirmedCustomer);
+                    confirmedName = populateConfirmedCustomerName(nameLine, customers);
+                    confirmedCustomer = populateConfirmedCustomer(nameLine, customers);
                     if (confirmedName == null) {
                         System.out.println("Your customer name was invalid. The request has not been processed.");
                     }
@@ -102,8 +102,8 @@ public class Main {
                 String activityRequested = scanner.nextLine();
                 String confirmedActivityName = null;
                 Activity confirmedActivity = new Activity(null, 0);
-                confirmedActivityName = populateConfirmedActivityName(activities, activityRequested, confirmedActivityName);
-                confirmedActivity = populateConfirmedActivity(activities, activityRequested, confirmedActivity);
+                confirmedActivityName = populateConfirmedActivityName(activities, activityRequested);
+                confirmedActivity = populateConfirmedActivity(activities, activityRequested);
                 if (confirmedActivityName == null) {
                     System.out.println("Your activity name was invalid. The request has not been processed.");
                     continue;
@@ -151,8 +151,8 @@ public class Main {
                 String nameLine = scanner.nextLine();
                 boolean validName = true;
                 try {
-                    confirmedName = populateConfirmedCustomerName(nameLine, customers, confirmedName);
-                    confirmedCustomer = populateConfirmedCustomer(nameLine, customers, confirmedCustomer);
+                    confirmedName = populateConfirmedCustomerName(nameLine, customers);
+                    confirmedCustomer = populateConfirmedCustomer(nameLine, customers);
                     if (confirmedName == null) {
                         System.out.println("Your customer name was invalid. The request has not been processed.");
                     }
@@ -169,8 +169,8 @@ public class Main {
                 String activityRequested = scanner.nextLine();
                 String confirmedActivityName = null;
                 Activity confirmedActivity = new Activity(null, 0);
-                confirmedActivityName = populateConfirmedActivityName(activities, activityRequested, confirmedActivityName);
-                confirmedActivity = populateConfirmedActivity(activities, activityRequested, confirmedActivity);
+                confirmedActivityName = populateConfirmedActivityName(activities, activityRequested);
+                confirmedActivity = populateConfirmedActivity(activities, activityRequested);
                 if (confirmedActivityName == null) {
                     System.out.println("Your activity name was invalid. The request has not been processed.");
                     continue;
@@ -218,11 +218,11 @@ public class Main {
         System.out.println("r - to update the stored data when a registered customer cancels tickets for a booking.");
     }
 
-    private static String populateConfirmedCustomerName(String nameLine, ArrayList<Customer> customers,
-                                                        String confirmedName) {
+    private static String populateConfirmedCustomerName(String nameLine, ArrayList<Customer> customers) {
         String fullName[] = nameLine.split(" ");
         String firstName = fullName[0];
         String surname = fullName[1];
+        String confirmedName = null;
         for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
             if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
                 //customer is valid
@@ -232,11 +232,11 @@ public class Main {
         return confirmedName;
     }
 
-    private static Customer populateConfirmedCustomer(String nameLine, ArrayList<Customer> customers,
-                                                            Customer confirmedCustomer) {
+    private static Customer populateConfirmedCustomer(String nameLine, ArrayList<Customer> customers) {
         String fullName[] = nameLine.split(" ");
         String firstName = fullName[0];
         String surname = fullName[1];
+        Customer confirmedCustomer = new Customer(null, null, null);
         for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
             if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
                 //customer is valid
@@ -247,7 +247,8 @@ public class Main {
     }
 
     private static String populateConfirmedActivityName(ArrayList<Activity> activities,
-                                                    String activityRequested, String confirmedActivityName) {
+                                                    String activityRequested) {
+        String confirmedActivityName = null;
         for (Activity activity : activities) {
             if (activity.getActivityName().equals(activityRequested)) {
                 //activity is valid
@@ -259,7 +260,8 @@ public class Main {
     }
 
     private static Activity populateConfirmedActivity(ArrayList<Activity> activities,
-                                                    String activityRequested, Activity confirmedActivity) {
+                                                    String activityRequested) {
+        Activity confirmedActivity = new Activity(null, 0);
         for (Activity activity : activities) {
             if (activity.getActivityName().equals(activityRequested)) {
                 //activity is valid
