@@ -30,6 +30,10 @@ public class Customer implements Comparable<Customer> {
         this.surname = surname;
     }
 
+    public String getFullName() {
+        return this.firstName + " " + this.surname;
+    }
+
     public HashMap<String, Integer> getActivityMap() {
         return this.activityMap;
     }
@@ -82,11 +86,7 @@ public class Customer implements Comparable<Customer> {
     @Override
     //TODO: Make this an appropriate format for output
     public String toString() {
-        return "Customer{" +
-                "firstName='" + firstName + '\'' +
-                ", surname='" + surname + '\'' +
-                ", chosenActivities=" + activityMap +
-                '}';
+        return this.firstName + " " + this.surname + " has " + this.uniqueActivityCounter + " activities booked ";
     }
 
 

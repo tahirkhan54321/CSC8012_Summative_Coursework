@@ -1,4 +1,3 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -73,7 +72,8 @@ public class Main {
                 printActivities(activities);
                 System.out.println("");
             } else if (userChoice.equals("c")) {
-                customers.toString();
+                printCustomers(customers);
+                System.out.println("");
             } else if (userChoice.equals("t") || userChoice.equals("r")) {
                 // TODO: finish logic in here
                 //t - to update the stored data when tickets are bought by one of the registered customers.
@@ -195,6 +195,21 @@ public class Main {
         System.out.println("r - to update the stored data when a registered customer cancels tickets for a booking.");
     }
 
+    private static void printActivities(ArrayList<Activity> activities) {
+        for (Activity activity : activities) {
+            System.out.println(activity.toString());
+        }
+    }
+
+    private static void printCustomers(ArrayList<Customer> customers) {
+        for (Customer customer : customers) {
+            System.out.println("\n" + customer.getFullName() + " has tickets for these activities:");
+            customer.getActivityMap().forEach( (activity,tickets) -> System.out.println(activity + ": " + tickets));
+            //this way of iterating over a hashmap was taken from stack overflow:
+            //https://stackoverflow.com/questions/46898/how-do-i-efficiently-iterate-over-each-entry-in-a-java-map
+            }
+        }
+
     private static String populateConfirmedCustomerName(String nameLine, ArrayList<Customer> customers) {
         String fullName[] = nameLine.split(" ");
         String firstName = fullName[0];
@@ -221,12 +236,6 @@ public class Main {
             }
         }
         return confirmedCustomer;
-    }
-
-    private static void printActivities(ArrayList<Activity> activities) {
-        for (Activity activity : activities) {
-            System.out.println(activity.toString());
-        }
     }
 
     private static String populateConfirmedActivityName(ArrayList<Activity> activities,
