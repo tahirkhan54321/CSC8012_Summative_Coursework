@@ -15,13 +15,14 @@ public class Main {
         HashMap<String, Integer> allCustomerActivities = new HashMap<>();
         ArrayList<Activity> activities = new ArrayList<Activity>();
         ArrayList<Customer> customers = new ArrayList<Customer>();
+        final int MAXNUMBEROFACTIVITIES = 3;
 
         try {
             Scanner fileReader = new Scanner(Paths.get("input.txt"));
-            int numberOfActivities = Integer.parseInt(fileReader.nextLine()); //taking the first line to use in a for loop
+            int numberOfActivities = Integer.parseInt(fileReader.nextLine());
             /*
-            for loop to add activities to the arraylist and builds a hashmap of activities
-            which can be used in the customer object
+            read in activities and add to the activities arraylist
+            build a hashmap of activities which can be used in the customer object
              */
             for (int i = 0; i < numberOfActivities; i++) {
                 String activityName = fileReader.nextLine();
@@ -38,7 +39,7 @@ public class Main {
             // start populating the customers arraylist
             int numberOfCustomers = Integer.parseInt(fileReader.nextLine());
             /*
-            for loop to add customers to the arraylist
+              add all customers to the arraylist from the file
              */
             for (int i = 0; i < numberOfCustomers; i++) {
                 String line = fileReader.nextLine();
@@ -50,11 +51,12 @@ public class Main {
                 sortedCustomers.addElement(sortedCustomers, customer);
             }
             customers = sortedCustomers;
+
             //Tests
             System.out.println("Number of customers registered: " + numberOfCustomers);
 
         } catch (IOException e) {
-            e.printStackTrace(); //TODO: change this to something more meaningful
+            System.out.println("The file does not exist.");
         }
 
         //tests to see whether all activities/customers are registered to arraylists - pass x2
@@ -75,10 +77,7 @@ public class Main {
                 printCustomers(customers);
                 System.out.println("");
             } else if (userChoice.equals("t") || userChoice.equals("r")) {
-                // TODO: finish logic in here
-                //t - to update the stored data when tickets are bought by one of the registered customers.
-
-                //checking name exists
+                //verifying name exists and creating a confirmed string and object to use in later parts of the program
                 System.out.println("What is your full name?");
                 String confirmedName = null;
                 Customer confirmedCustomer = new Customer(null, null, null);
@@ -98,7 +97,7 @@ public class Main {
                     continue;
                 }
 
-                //checking activity exists
+                //verifying activity exists and creating a confirmed string and object to use in later parts of the program
                 System.out.println("What is the name of the activity you'd like to update tickets for?");
                 String activityRequested = scanner.nextLine();
                 String confirmedActivityName = null;
@@ -111,11 +110,12 @@ public class Main {
                 }
 
                 if (userChoice.equals("t")) {
-
+                    //t - to update the stored data when tickets are bought by one of the registered customers.
                     //checking if there are enough tickets left for the activity
                     System.out.println("How many tickets would you like to buy?");
                     int numberOfTickets = Integer.valueOf(scanner.nextLine());
                     boolean noOfTicketsBoughtValidity = false;
+
                     if (numberOfTickets <= 0) {
                         System.out.println("You have input an invalid number of tickets." +
                                 "The request has not been processed.");
@@ -130,8 +130,8 @@ public class Main {
                         }
                     }
 
-                    //adding the tickets for the activity to the customer
-                    if (noOfTicketsBoughtValidity == true && confirmedCustomer.getUniqueActivityCounter() < 3) {
+                    //adding the tickets for the activity to the customer if valid
+                    if (noOfTicketsBoughtValidity == true && confirmedCustomer.getUniqueActivityCounter() < MAXNUMBEROFACTIVITIES) {
                         confirmedCustomer.boughtTickets(numberOfTickets, activityRequested);
                         confirmedActivity.buyTickets(numberOfTickets);
                         System.out.println("You have bought " + numberOfTickets + " tickets for " +
@@ -147,22 +147,22 @@ public class Main {
 
 
                 } else if (userChoice.equals("r")) {
-                    //TODO: add logic in here
                     //r - to update the stored data when a registered customer cancels tickets for a booking
 
-                    //checking if there are enough tickets left for the activity
-                    //if each customer can only sell as many tickets as they own and no more,
-                    //then the aggregate number of tickets for the activity can't exceed the original amount by the act of selling tickets back
-                    System.out.println("How many tickets would you like to sell?");
+                    /* checking if there are enough tickets left for the activity
+                        if each customer can only sell as many tickets as they own and no more,
+                        then the aggregate number of tickets for the activity can't exceed the original amount
+                        by the act of selling tickets back
+                     */
+                    System.out.println("How many tickets would you like to cancel?");
                     int numberOfTickets = Integer.valueOf(scanner.nextLine());
-                    boolean noOfTicketsSoldValidity = false;
                     int ticketsRemainingForCustomer = confirmedCustomer.getActivityMap().get(confirmedActivityName)
                             - numberOfTickets;
+
                     if (ticketsRemainingForCustomer >= 0) {
                         confirmedCustomer.soldTickets(numberOfTickets, confirmedActivityName);
                         confirmedActivity.sellTickets(numberOfTickets);
-                        noOfTicketsSoldValidity = true;
-                        System.out.println("You have sold " + numberOfTickets + " tickets for " +
+                        System.out.println("You have cancelled " + numberOfTickets + " tickets for " +
                                 confirmedActivityName + ".");
                     }
                     if (ticketsRemainingForCustomer == 0) {
@@ -170,7 +170,7 @@ public class Main {
                         confirmedCustomer.clearedTicketsFromActivity();
                     }
                     if (ticketsRemainingForCustomer < 0) {
-                        System.out.println("You have tried to sell more tickets than you own. " +
+                        System.out.println("You have tried to cancel more tickets than you own. " +
                                 "The request has not been processed.");
                     }
 
@@ -204,11 +204,11 @@ public class Main {
     private static void printCustomers(ArrayList<Customer> customers) {
         for (Customer customer : customers) {
             System.out.println("\n" + customer.getFullName() + " has tickets for these activities:");
-            customer.getActivityMap().forEach( (activity,tickets) -> System.out.println(activity + ": " + tickets));
+            customer.getActivityMap().forEach((activity, tickets) -> System.out.println(activity + ": " + tickets));
             //this way of iterating over a hashmap was taken from stack overflow:
             //https://stackoverflow.com/questions/46898/how-do-i-efficiently-iterate-over-each-entry-in-a-java-map
-            }
         }
+    }
 
     private static String populateConfirmedCustomerName(String nameLine, ArrayList<Customer> customers) {
         String fullName[] = nameLine.split(" ");

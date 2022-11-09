@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Added option a to print activities. Reformatted code to remove some repeated code for options t and r">
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Added print statement for customer choice c">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Activity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668006882708</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added print statement for customer choice c">
+      <created>1668008282641</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1668008282641</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,6 +201,7 @@
     <MESSAGE value="Cleaned up the testing statements" />
     <MESSAGE value="Cleaned up the methods" />
     <MESSAGE value="Added option a to print activities. Reformatted code to remove some repeated code for options t and r" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added option a to print activities. Reformatted code to remove some repeated code for options t and r" />
+    <MESSAGE value="Added print statement for customer choice c" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added print statement for customer choice c" />
   </component>
 </project>
