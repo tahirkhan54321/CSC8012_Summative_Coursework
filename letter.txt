@@ -1,7 +1,18 @@
 Dear Michael Smith,
 
- Unfortunately, there are not enough tickets left for the activity you've attempted to book (Sailing).
+Unfortunately, there are not enough tickets left for the activity you've attempted to book (Hiking).
 
- Yours sincerely,
+Yours sincerely,
 
- Ticket Operator
+Ticket Operator
+
+
+Dear Anna Smith,
+
+Unfortunately, there are not enough tickets left for the activity you've attempted to book (Sailing).
+
+Yours sincerely,
+
+Ticket Operator
+
+

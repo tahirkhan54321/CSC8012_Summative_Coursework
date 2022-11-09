@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
@@ -75,14 +77,14 @@ public class Customer implements Comparable<Customer> {
 
     public void notEnoughTicketsLetter(Activity activity) {
         try {
-            PrintWriter outFile = new PrintWriter("letter.txt");
+            PrintWriter outFile = new PrintWriter(new FileWriter("letter.txt", true));
             outFile.write("Dear " + this.getFullName() + ",\n\nUnfortunately, there are not enough tickets left for the " +
                     "activity you've attempted to book (" + activity.getActivityName() +
-                    ").\n\nYours sincerely,\n\nTicket Operator");
+                    ").\n\nYours sincerely,\n\nTicket Operator\n\n\n");
             outFile.flush();
             outFile.close();
         }
-        catch (FileNotFoundException e) {
+        catch (IOException e) {
             System.out.println("No file was printed.");
         }
     }
