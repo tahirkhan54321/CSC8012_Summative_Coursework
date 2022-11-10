@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 
+/**
+ * This takes an already sorted arraylist and adds and element to it, making sure it ends up in the right place.
+ * <p>
+ * @param <E> is a generic object which extends Comparable.
+ * </p>
+ */
+
 public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
 
     public SortedArrayList<E> addElement(SortedArrayList<E> list, E addToList) {

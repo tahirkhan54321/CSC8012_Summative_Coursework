@@ -1,9 +1,13 @@
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+/**
+ * This class stores customers and the activities associated with them, i.e. which tickets they have bought.
+ * We use a hashmap to store the number of tickets bought for each customer, and this is by definition unordered.
+ * We also count the number of different activities a customer has booked here.
+ */
 
 public class Customer implements Comparable<Customer> {
 

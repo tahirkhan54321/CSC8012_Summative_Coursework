@@ -1,3 +1,8 @@
+/**
+ * This class stores aggregate information about activities.
+ * E.g. how many tickets have been bought for each activity and how many are available.
+ * It also tells the program what to do when a customer buys or cancels tickets for an activity.
+ */
 public class Activity implements Comparable<Activity>  {
 
     private String activityName;
@@ -24,12 +29,15 @@ public class Activity implements Comparable<Activity>  {
         this.maxNumberOfTicketsAvailable = maxNumberOfTickets;
     }
 
-    //conditionals for validity of buying a ticket are located in the main method.
+    /*
+    conditionals for validity of buying a ticket are located in the main method.
+     */
     public int buyTickets(int buyTickets) {
         return this.maxNumberOfTicketsAvailable -= buyTickets;
     }
 
-    /* on aggregate, customers can't sell more tickets than those which have been bought.
+    /*
+    on aggregate, customers can't sell more tickets than those which have been bought.
     so maxNumberOfTickets available can't exceed the original amount from the input file, no need for a check in this method
      */
     public int sellTickets(int sellTickets) {
@@ -40,7 +48,8 @@ public class Activity implements Comparable<Activity>  {
     public int compareTo(Activity activity) {
         int activityComparison = this.activityName.compareTo(activity.getActivityName());
         if (activityComparison !=0) {
-            /* tests
+            /*
+            tests
             System.out.println("activity going into compareTo method: " + activity.getActivityName()
                     + " comparing to: " + this.activityName);
             System.out.println(activityComparison);

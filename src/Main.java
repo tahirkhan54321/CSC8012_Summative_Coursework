@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * This class contains all the logic and I/O for the program.
+ * It populates the activity and customer arraylists.
+ * Then takes user inputs and performs checks/validation on them.
+ * Then performs the required actions.
+ */
 public class Main {
 
     static Scanner scanner = new Scanner(System.in);
@@ -33,11 +39,14 @@ public class Main {
             }
             activities = sortedActivities;
 
-            /* Test
+            /*
+            Test
             System.out.println("Number of activities registered: " + numberOfActivities);
              */
 
-            //populate the customers arraylist
+            /*
+            populate the customers arraylist
+             */
             int numberOfCustomers = Integer.parseInt(fileReader.nextLine());
 
             for (int i = 0; i < numberOfCustomers; i++) {
@@ -51,7 +60,8 @@ public class Main {
             }
             customers = sortedCustomers;
 
-            /* Test
+            /*
+            Test
             System.out.println("Number of customers registered: " + numberOfCustomers);
              */
 
@@ -59,7 +69,8 @@ public class Main {
             System.out.println("The file does not exist.");
         }
 
-        /* tests to see whether all activities/customers are registered to arraylists - pass x2
+        /*
+        tests to see whether all activities/customers are registered to arraylists - pass x2
         System.out.println(activities);
         System.out.println(customers);
          */
@@ -77,10 +88,12 @@ public class Main {
                 printCustomers(customers); //note that the hashmap for each customer's activities is by definition unordered
                 System.out.println("");
             } else if (userChoice.equals("t") || userChoice.equals("r")) {
-                //verifying name exists and creating a confirmed string and object to use in later parts of the program
-                System.out.println("What is your full name?");
+                /*
+                verifying name exists and creating a confirmed string and object to use in later parts of the program
+                 */
                 String confirmedName = null;
                 Customer confirmedCustomer = new Customer(null, null, null);
+                System.out.println("What is your full name?");
                 String nameLine = scanner.nextLine();
                 boolean validName = true;
                 try {
@@ -98,11 +111,13 @@ public class Main {
                     continue;
                 }
 
-                //verifying activity exists and creating a confirmed string and object to use in later parts of the program
-                System.out.println("What is the name of the activity you'd like to update tickets for?");
-                String activityRequested = scanner.nextLine();
+                /*
+                verifying activity exists and creating a confirmed string and object to use in later parts of the program
+                 */
                 String confirmedActivityName = null;
                 Activity confirmedActivity = new Activity(null, 0);
+                System.out.println("What is the name of the activity you'd like to update tickets for?");
+                String activityRequested = scanner.nextLine();
                 confirmedActivityName = populateConfirmedActivityName(activities, activityRequested);
                 confirmedActivity = populateConfirmedActivity(activities, activityRequested);
                 if (confirmedActivityName == null) {
@@ -111,11 +126,12 @@ public class Main {
                 }
 
                 if (userChoice.equals("t")) {
-                    //checking if there are enough tickets left for the activity
+                    /*
+                    checking if there are enough tickets left for the activity
+                     */
+                    boolean noOfTicketsBoughtValidity = false;
                     System.out.println("How many tickets would you like to buy?");
                     int numberOfTickets = Integer.valueOf(scanner.nextLine());
-                    boolean noOfTicketsBoughtValidity = false;
-
                     if (numberOfTickets <= 0) {
                         System.out.println("You have input an invalid number of tickets." +
                                 "The request has not been processed.\n");
@@ -125,35 +141,40 @@ public class Main {
                             noOfTicketsBoughtValidity = true;
                         } else if (confirmedActivity.getmaxNumberOfTicketsAvailable() - numberOfTickets < 0) {
                             confirmedCustomer.notEnoughTicketsLetter(confirmedActivity);
-                            System.out.println("Letter printed.\n");
+                            System.out.println(confirmedName + " has tried to book too many tickets for " + confirmedActivityName +
+                                    ".\nLetter printed.\n");
                             noOfTicketsBoughtValidity = false;
                         }
                     }
 
-                    //adding the tickets for the activity to the customer if valid
+                    /*
+                    adding the tickets for the activity to the customer if valid
+                     */
                     if (noOfTicketsBoughtValidity == true && confirmedCustomer.getUniqueActivityCounter() < MAXNUMBEROFACTIVITIES) {
                         confirmedCustomer.boughtTickets(numberOfTickets, activityRequested);
                         confirmedActivity.buyTickets(numberOfTickets);
-                        System.out.println("You have bought " + numberOfTickets + " tickets for " +
+                        System.out.println(confirmedName + " has bought " + numberOfTickets + " ticket(s) for " +
                                 confirmedActivityName + ".\n");
                     } else if (confirmedCustomer.getUniqueActivityCounter() >= 3) {
-                        System.out.println("You can only order tickets for a maximum of three activities. " +
+                        System.out.println(confirmedName + " can only order tickets for a maximum of three activities. " +
                                 "The request has not been processed.\n");
                     }
 
-                    /* Test statements
-                        System.out.println("activity we bought tickets for: " + confirmedActivity +
+                    /*
+                    Test statements
+                    System.out.println("activity we bought tickets for: " + confirmedActivity +
                             "customer we added tickets to: " + confirmedCustomer);
-                        System.out.println("Customer's activity hashmap: " + confirmedCustomer.getActivityMap());
-                        System.out.println("Customer's unique activity count: " + confirmedCustomer.getUniqueActivityCounter());
-                        System.out.println("Activity's max no of available tickets: " + confirmedActivity.getmaxNumberOfTicketsAvailable());
+                    System.out.println("Customer's activity hashmap: " + confirmedCustomer.getActivityMap());
+                    System.out.println("Customer's unique activity count: " + confirmedCustomer.getUniqueActivityCounter());
+                    System.out.println("Activity's max no of available tickets: " + confirmedActivity.getmaxNumberOfTicketsAvailable());
                     */
 
                 } else if (userChoice.equals("r")) {
-                    /* check if there are enough tickets left for the activity.
-                        note: if each customer can only sell as many tickets as they own and no more,
-                        then the aggregate number of tickets for the activity can't exceed the original amount
-                        by the act of cancelling tickets
+                    /*
+                    check if there are enough tickets left for the activity.
+                    note: if each customer can only sell as many tickets as they own and no more,
+                    then the aggregate number of tickets for the activity can't exceed the original amount
+                    by the act of cancelling tickets
                      */
                     System.out.println("How many tickets would you like to cancel?");
                     int numberOfTickets = Integer.valueOf(scanner.nextLine());
@@ -163,7 +184,7 @@ public class Main {
                     if (ticketsRemainingForCustomer >= 0) {
                         confirmedCustomer.soldTickets(numberOfTickets, confirmedActivityName);
                         confirmedActivity.sellTickets(numberOfTickets);
-                        System.out.println("You have cancelled " + numberOfTickets + " tickets for " +
+                        System.out.println(confirmedName + " has cancelled " + numberOfTickets + " ticket(s) for " +
                                 confirmedActivityName + ".\n");
                     }
                     if (ticketsRemainingForCustomer == 0) {
@@ -171,16 +192,17 @@ public class Main {
                         confirmedCustomer.clearedTicketsFromActivity();
                     }
                     if (ticketsRemainingForCustomer < 0) {
-                        System.out.println("You have tried to cancel more tickets than you own. " +
+                        System.out.println(confirmedName + " has tried to cancel more tickets than they own. " +
                                 "The request has not been processed.\n");
                     }
 
-                    /* Test statements
-                        System.out.println("Activity we sold tickets for: " + confirmedActivity +
+                    /*
+                    Test statements
+                    System.out.println("Activity we sold tickets for: " + confirmedActivity +
                             ". Customer we removed tickets from: " + confirmedCustomer);
-                        System.out.println("Customer's activity hashmap: " + confirmedCustomer.getActivityMap());
-                        System.out.println("Customer's unique activity count: " + confirmedCustomer.getUniqueActivityCounter());
-                        System.out.println("Activity's max no of available tickets: " + confirmedActivity.getmaxNumberOfTicketsAvailable());
+                    System.out.println("Customer's activity hashmap: " + confirmedCustomer.getActivityMap());
+                    System.out.println("Customer's unique activity count: " + confirmedCustomer.getUniqueActivityCounter());
+                    System.out.println("Activity's max no of available tickets: " + confirmedActivity.getmaxNumberOfTicketsAvailable());
                      */
                 }
 
@@ -210,7 +232,8 @@ public class Main {
         for (Customer customer : customers) {
             System.out.println("\n" + customer.getFullName() + " has tickets for these activities:");
             customer.getActivityMap().forEach((activity, tickets) -> System.out.println(activity + ": " + tickets));
-            /* this way of iterating over a hashmap was taken from stack overflow:
+            /*
+            this way of iterating over a hashmap was taken from stack overflow:
             https://stackoverflow.com/questions/46898/how-do-i-efficiently-iterate-over-each-entry-in-a-java-map
             Original Author - Stack Overflow, "The Coordinator"
             Modifying Author – Tahir Khan
@@ -228,7 +251,7 @@ public class Main {
         for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
             if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
                 //customer is valid
-                confirmedName = fullName + " " + surname;
+                confirmedName = firstName + " " + surname;
             }
         }
         return confirmedName;
@@ -239,7 +262,7 @@ public class Main {
         String firstName = fullName[0];
         String surname = fullName[1];
         Customer confirmedCustomer = new Customer(null, null, null);
-        for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
+        for (Customer customer : customers) {
             if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
                 //customer is valid
                 confirmedCustomer = customer;
