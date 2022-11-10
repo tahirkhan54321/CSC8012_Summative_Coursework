@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="First draft, all tested and working. Javadoc comments added. Fixed a bug with confirmedName. Cleaned up text outputs to be more meaningful to a clerk rather than a customer.">
+    <list default="true" id="a3ec7d20-7ee5-4397-a04a-72bc1ee1a678" name="Changes" comment="Final draft, tested according to test matrix. Letter printed and saved to onedrive. Clerk.txt printed and saved to onedrive.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainProgram.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +54,7 @@
       <option name="presentableId" value="Default" />
       <updated>1667222825617</updated>
       <workItem from="1667222827089" duration="40555000" />
+      <workItem from="1668102797750" duration="42000" />
     </task>
     <task id="LOCAL-00001" summary="First Draft">
       <created>1667585596504</created>
@@ -188,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668101189115</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Final draft, tested according to test matrix. Letter printed and saved to onedrive. Clerk.txt printed and saved to onedrive.">
+      <created>1668102662413</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1668102662413</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,6 +234,7 @@
     <MESSAGE value="tidied up code and re-commented everything" />
     <MESSAGE value="First draft, all tested and working. Comments checked and verified. Letter now appends all prints." />
     <MESSAGE value="First draft, all tested and working. Javadoc comments added. Fixed a bug with confirmedName. Cleaned up text outputs to be more meaningful to a clerk rather than a customer." />
-    <option name="LAST_COMMIT_MESSAGE" value="First draft, all tested and working. Javadoc comments added. Fixed a bug with confirmedName. Cleaned up text outputs to be more meaningful to a clerk rather than a customer." />
+    <MESSAGE value="Final draft, tested according to test matrix. Letter printed and saved to onedrive. Clerk.txt printed and saved to onedrive." />
+    <option name="LAST_COMMIT_MESSAGE" value="Final draft, tested according to test matrix. Letter printed and saved to onedrive. Clerk.txt printed and saved to onedrive." />
   </component>
 </project>

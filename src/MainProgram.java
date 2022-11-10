@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Then takes user inputs and performs checks/validation on them.
  * Then performs the required actions.
  */
-public class Main {
+public class MainProgram {
 
     static Scanner scanner = new Scanner(System.in);
 
