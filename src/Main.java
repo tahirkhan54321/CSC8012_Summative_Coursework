@@ -66,7 +66,7 @@ public class Main {
              */
 
         } catch (IOException e) {
-            System.out.println("The file does not exist.");
+            System.out.println("The file does not exist.\n");
         }
 
         /*
@@ -100,11 +100,11 @@ public class Main {
                     confirmedName = populateConfirmedCustomerName(nameLine, customers);
                     confirmedCustomer = populateConfirmedCustomer(nameLine, customers);
                     if (confirmedName == null) {
-                        System.out.println("Your customer name was invalid. The request has not been processed.");
+                        System.out.println("Your customer name was invalid. The request has not been processed.\n");
                         continue;
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("You haven't included both a first name and last name separated by a space.");
+                    System.out.println("You haven't included both a first name and last name separated by a space.\n");
                     validName = false;
                 }
                 if (validName == false) {
@@ -121,7 +121,7 @@ public class Main {
                 confirmedActivityName = populateConfirmedActivityName(activities, activityRequested);
                 confirmedActivity = populateConfirmedActivity(activities, activityRequested);
                 if (confirmedActivityName == null) {
-                    System.out.println("Your activity name was invalid. The request has not been processed.");
+                    System.out.println("Your activity name was invalid. The request has not been processed.\n");
                     continue;
                 }
 
@@ -207,7 +207,7 @@ public class Main {
                 }
 
             } else {
-                System.out.println("You have selected an invalid option, try again");
+                System.out.println("You have selected an invalid option, try again.\n");
             }
         }
     }
