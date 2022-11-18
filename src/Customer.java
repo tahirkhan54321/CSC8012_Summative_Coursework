@@ -7,6 +7,8 @@ import java.util.HashMap;
  * This class stores customers and the activities associated with them, i.e. which tickets they have bought.
  * We use a hashmap to store the number of tickets bought for each customer, and this is by definition unordered.
  * We also count the number of different activities a customer has booked here.
+ *
+ * @author Tahir Khan
  */
 
 public class Customer implements Comparable<Customer> {
@@ -15,7 +17,7 @@ public class Customer implements Comparable<Customer> {
     private String surname;
     private HashMap<String, Integer> activityMap;
     private int uniqueActivityCounter = 0;
-    private static final int MAXNUMBEROFACTIVITIES = 3;
+    private static final int MAX_NUMBER_OF_ACTIVITIES = 3;
 
 
     public Customer(String firstName, String surname, HashMap<String, Integer> activityMap) {
@@ -60,25 +62,43 @@ public class Customer implements Comparable<Customer> {
         this.uniqueActivityCounter = uniqueActivityCounter;
     }
 
+    /**
+     * Checks to see if a customer has more than MAX_NUMBER_OF_ACTIVITIES activities in their hashmap
+     * Then updates the hashmap if it's a valid transaction
+     * @param tickets the number of tickets requested by the clerk
+     * @param activity the name of the activity requested by the clerk
+     */
     public void boughtTickets(int tickets, String activity) {
         if (this.activityMap.get(activity) == 0) {
             uniqueActivityCounter++;
         }
-        if(uniqueActivityCounter <= MAXNUMBEROFACTIVITIES) {
+        if(uniqueActivityCounter <= MAX_NUMBER_OF_ACTIVITIES) {
             int totalTickets = this.activityMap.get(activity) + tickets;
             this.activityMap.put(activity, totalTickets);
         }
     }
 
+    /**
+     * Updates the customer's hashmap when a ticket is sold
+     * @param tickets the number of tickets requested by the clerk
+     * @param activity the name of the activity requested by the clerk
+     */
     public void soldTickets(int tickets, String activity) {
         int ticketsLeftover = this.activityMap.get(activity) - tickets;
         this.activityMap.put(activity, ticketsLeftover);
     }
 
+    /**
+     * Decrements the counter for when a customer sells all of their tickets for a single activity
+     */
     public void clearedTicketsFromActivity() {
         uniqueActivityCounter--;
     }
 
+    /**
+     * prints a letter when we don't have enough tickets for an activity
+     * @param activity the activity requested which we don't have enough tickets for
+     */
     public void notEnoughTicketsLetter(Activity activity) {
         try {
             PrintWriter outFile = new PrintWriter(new FileWriter("letter.txt", true));
@@ -93,6 +113,11 @@ public class Customer implements Comparable<Customer> {
         }
     }
 
+    /**
+     * CompareTo method override to allow sorting by the SortedArrayList
+     * @param customer the object to be compared.
+     * @return positive, negative or 0
+     */
     @Override
     public int compareTo(Customer customer) {
             int lastNameComparison = this.surname.compareTo(customer.surname);

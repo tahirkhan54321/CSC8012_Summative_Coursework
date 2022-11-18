@@ -6,9 +6,10 @@ import java.util.Scanner;
 
 /**
  * This class contains all the logic and I/O for the program.
- * It populates the activity and customer arraylists.
+ * It populates sorted activity and customer arraylists.
  * Then takes user inputs and performs checks/validation on them.
  * Then performs the required actions.
+ * @author Tahir Khan
  */
 public class MainProgram {
 
@@ -21,7 +22,7 @@ public class MainProgram {
         HashMap<String, Integer> allCustomerActivities = new HashMap<>();
         ArrayList<Activity> activities = new ArrayList<Activity>();
         ArrayList<Customer> customers = new ArrayList<Customer>();
-        final int MAXNUMBEROFACTIVITIES = 3;
+        final int MAX_NUMBER_OF_ACTIVITIES = 3;
 
         try {
             Scanner fileReader = new Scanner(Paths.get("input.txt"));
@@ -150,7 +151,7 @@ public class MainProgram {
                     /*
                     adding the tickets for the activity to the customer if valid
                      */
-                    if (noOfTicketsBoughtValidity == true && confirmedCustomer.getUniqueActivityCounter() < MAXNUMBEROFACTIVITIES) {
+                    if (noOfTicketsBoughtValidity == true && confirmedCustomer.getUniqueActivityCounter() < MAX_NUMBER_OF_ACTIVITIES) {
                         confirmedCustomer.boughtTickets(numberOfTickets, activityRequested);
                         confirmedActivity.buyTickets(numberOfTickets);
                         System.out.println(confirmedName + " has bought " + numberOfTickets + " ticket(s) for " +
@@ -243,12 +244,18 @@ public class MainProgram {
         }
     }
 
+    /**
+     * Validates a customer's name which is taken in from the clerk's input by checking whether it's in the customers arraylist
+     * @param nameLine the value taken in by the scanner to be the full name of the customer
+     * @param customers the arraylist of customers in the program
+     * @return a name which has been validated
+     */
     private static String populateConfirmedCustomerName(String nameLine, ArrayList<Customer> customers) {
         String fullName[] = nameLine.split(" ");
         String firstName = fullName[0];
         String surname = fullName[1];
         String confirmedName = null;
-        for (Customer customer : customers) {  //TODO: can this be replaced with a binary search once the list is sorted?
+        for (Customer customer : customers) {
             if (customer.getFirstName().equals(firstName) && customer.getSurname().equals(surname)) {
                 //customer is valid
                 confirmedName = firstName + " " + surname;
@@ -257,6 +264,13 @@ public class MainProgram {
         return confirmedName;
     }
 
+    /**
+     * Validates a customer's name input by the clerk
+     * if they are in the arraylist it returns the customer object associated with them
+     * @param nameLine the value taken in by the scanner to be the full name of the customer
+     * @param customers the arraylist of customers in the program
+     * @return a customer object which has been validated
+     */
     private static Customer populateConfirmedCustomer(String nameLine, ArrayList<Customer> customers) {
         String fullName[] = nameLine.split(" ");
         String firstName = fullName[0];
@@ -271,6 +285,13 @@ public class MainProgram {
         return confirmedCustomer;
     }
 
+    /**
+     * Validates an activity name
+     * if it is on the activities arraylist we return the confirmed activity name
+     * @param activities the arraylist of activities
+     * @param activityRequested the activity string input by the clerk
+     * @return a validated activity name
+     */
     private static String populateConfirmedActivityName(ArrayList<Activity> activities,
                                                         String activityRequested) {
         String confirmedActivityName = null;
@@ -284,6 +305,13 @@ public class MainProgram {
         return confirmedActivityName;
     }
 
+    /**
+     * Validates an activity name
+     * if it is on the activities arraylist we return the confirmed activity object
+     * @param activities the arraylist of activities
+     * @param activityRequested the activity string input by the clerk
+     * @return a validated activity object
+     */
     private static Activity populateConfirmedActivity(ArrayList<Activity> activities,
                                                       String activityRequested) {
         Activity confirmedActivity = new Activity(null, 0);

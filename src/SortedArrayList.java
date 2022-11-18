@@ -1,14 +1,23 @@
 import java.util.ArrayList;
 
 /**
- * This takes an already sorted arraylist and adds and element to it, making sure it ends up in the right place.
+ * Provides a sorted array list once an element has been added to it
  * <p>
  * @param <E> is a generic object which extends Comparable.
+ * @author Tahir Khan
+ *
  * </p>
  */
 
 public class SortedArrayList<E extends Comparable<E>> extends ArrayList {
 
+    /**
+     * This method takes an already sorted arraylist and adds an element to it,
+     * making sure the element ends up in the right place.
+     * @param list an existing sorted arraylist
+     * @param addToList an element to be added to the list
+     * @return a sorted arraylist with the new element in the right place
+     */
     public SortedArrayList<E> addElement(SortedArrayList<E> list, E addToList) {
         if (list.size() == 0) {
             list.add(addToList);
